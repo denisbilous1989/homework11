@@ -134,7 +134,7 @@ hr + .navigation li {
   transform: scale(1.2);
 }
 
-.contact-item a {
+.tel {
   position: relative;
   font-size: 16px;
   line-height: 19px;
@@ -153,41 +153,109 @@ hr + .navigation li {
   background: #f13c6e;
   position: absolute;
   visibility: hidden;
-  transition: width 0.8s;
+  transition: all 0.8s;
 }
 
 .tel:hover:after {
-  text-shadow: 0 0 5px rgb(133, 88, 88);
   width: 100%;
   visibility: visible;
 }
 
-#btn__white {
-  position: absolute;
-  opacity: 0;
-  visibility: hidden;
+.tel:hover {
+  text-shadow: 0 0 5px rgb(133, 88, 88);
+}
+
+.btn {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  top: 0;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn__large {
+  padding: 12px 27px;
+  border-radius: 40px;
+  letter-spacing: 0.05em;
+  line-height: 16px;
+}
+
+.btn__small {
+  border: 2px solid #f13c6e;
+  border-radius: 30px;
+  padding: 9px 39px;
 }
 
 .btn__white {
-  padding: 12px 27px;
+  color: #000;
   background: #ffffff;
   border: 2px solid #f13c6e;
-  border-radius: 40px;
   margin: 0 0 0 20px;
-  box-shadow: 0 8px 0 #92445b;
-  transition: all 0.5s;
+}
+
+.btn__white:after {
+  content: '';
+  position: absolute;
+  clear: both;
+  width: 0;
+  height: 100%;
   top: 0;
+  left: 0;
+  background: #f13c6e;
+  border: 2px solid #fff;
+  border-radius: 40px;
+  transition: width 0.5s;
+  visibility: hidden;
 }
 
 .btn__white:hover {
-  top: 3px;
-  background: #f13c6e;
   color: #fff;
-  box-shadow: 0 3px 0 #c2b2b5;
 }
 
-#btn__white:checked ~.btn__white {
-  box-shadow: 0 3px 0 #92445b;
+.btn__white:hover:after {
+  width: 100%;
+  visibility: visible;
+}
+
+.btn__red {
+  border: 2px solid #fff;
+  background: #f13c6e;
+}
+
+.btn__red:after {
+  content: '';
+  position: absolute;
+  clear: both;
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background: #fff;
+  border: 2px solid #f13c6e;
+  border-radius: 40px;
+  transition: width 0.5s;
+  visibility: hidden;
+}
+
+.btn__red:hover {
+  color: #f13c6e;
+}
+
+.btn__red:hover:after {
+  width: 100%;
+  visibility: visible;
+}
+
+.btn__small:hover {
+  color: #f13c6e;
 }
 
 .contact-item {
@@ -233,34 +301,6 @@ hr + .container ul {
   margin: 0 0 50px 0;
 }
 
-.btn__red {
-  position: relative;
-  top: 0;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  background: #f13c6e;
-  box-shadow: 0 10px 0 #c2b2b5;
-  transition: all 0.5s;
-}
-
-.btn__red:hover {
-  background: #ffffff;
-  color: #f13c6e;
-  top: 3px;
-  box-shadow: 0 3px 0 #c2b2b5;
-}
-
-.text .btn {
-  width: 170px;
-  border: 2px solid #ffffff;
-  border-radius: 40px;
-  padding: 12px 27px;
-  text-align: center;
-  letter-spacing: 0.05em;
-  line-height: 16px;
-}
-
 h3 {
   margin-top: 80px;
   font-weight: 700;
@@ -270,25 +310,56 @@ h3 {
 }
 
 .cards {
+  position: relative;
   margin: 0 -15px 50px -15px;
+  perspective: 1000px;
 }
 
 .card {
+  vertical-align: top;
+  min-height: 330px;
   position: relative;
+  width: 100%;
+  height: 100%;
   display: inline-block;
   background: #ffffff;
   width: 22%;
   margin: 15px;
-  transition: all 2s;
+  /*transition: all 0.5s;*/
+  transform-style: preserve-3d;
 }
 
-.card:hover {
-  transform: rotate(360deg);
+.card:hover .back {
+  transform: rotateY(180deg);
+  transform: scaleX(1);
+  opacity: 1;
 }
+
+.card:hover .front {
+  opacity: 0;
+}
+
+.front {
+  position: absolute;
+  height: 100%;
+}
+
+.back {
+  background: #fff;
+  top: 0;
+  left: 0;
+  position: absolute;
+  opacity: 0;
+  transform: rotateY(90deg);
+  transition: all 0.5s;
+}
+
 
 .card img {
+  text-align: center;
   display: block;
-  margin: 20px auto;
+  margin: 0 auto;
+  height: 100%;
 }
 
 .card-text {
@@ -304,12 +375,6 @@ h3 {
   letter-spacing: 0.05em;
   color: #000000;
   margin: 10px;
-}
-
-.card-text .btn {
-  border: 2px solid #f13c6e;
-  border-radius: 30px;
-  padding: 9px 39px;
 }
 
 .card-item {
@@ -368,22 +433,6 @@ input[type="email"] {
   padding: 10px;
 }
 
-.card-item__text .btn {
-  display: inline-block;
-  width: 170px;
-  height: 35px;
-  background: #f13c6e;
-  border: 2px solid #ffffff;
-  border-radius: 40px;
-  padding: 8px;
-  margin: 3px 0 10px 0;
-  color: #ffffff;
-  text-decoration: none;
-  text-align: center;
-  letter-spacing: 0.05em;
-  line-height: 16px;
-}
-
 .card-item__text .btn:hover {
   background: #ffffff;
   color: #f13c6e;
@@ -412,8 +461,9 @@ input[type="email"] {
 }
 
 .categori-card {
+  width: 24%;
   display: inline-block;
-  margin: 50px 100px;
+  padding: 20px 20px 20px 0;
 }
 
 .categori-card h2 {
@@ -421,7 +471,11 @@ input[type="email"] {
   font-size: 16px;
   line-height: 22px;
   color: #000000;
-  max-width: 100px;
+  margin: 0 15px;
+}
+
+.categori-card span {
+  display: block;
 }
 
 .categori-card a {
@@ -431,32 +485,16 @@ input[type="email"] {
   margin: 8px 0;
 }
 
-/*.categori-card a:hover {
-  color: #f13c6e;
-}*/
-
 .categori-card a:active {
   color: #f13c6e;
 }
-
-.container .categori-card:first-child {
-  margin-left: 0px;
-  
-}
-
-.container .categori-card:last-child {
-  margin-right: 0px;
-  
-}
-
-.card__link
 
 #footer .navigation {
   text-align: inherit;
 }
 
 #footer li {
-  margin: 0;
+  /*margin: 0;*/
   display: block;
 }
 
