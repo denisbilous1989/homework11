@@ -312,46 +312,52 @@ h3 {
 .cards {
   position: relative;
   margin: 0 -15px 50px -15px;
-  perspective: 1000px;
 }
 
 .card {
   vertical-align: top;
   min-height: 330px;
   position: relative;
-  width: 100%;
-  height: 100%;
   display: inline-block;
   background: #ffffff;
   width: 22%;
   margin: 15px;
-  /*transition: all 0.5s;*/
+  perspective: 1000px;
+  background: transparent;
+}
+
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*text-align: center;*/
+  transition: transform 0.9s;
   transform-style: preserve-3d;
+  
 }
 
-.card:hover .back {
-  transform: rotateY(180deg);
-  transform: scaleX(1);
-  opacity: 1;
+.card:hover .flip-card {
+  transform:rotateY(180deg);
 }
 
-.card:hover .front {
-  opacity: 0;
-}
+/*.front img {
+  height: 100%;
+}*/
 
 .front {
+}
+
+.front,
+.back {
   position: absolute;
+  width: 100%;
   height: 100%;
+  /*-webkit-backface-visibility: hidden;*/
+  backface-visibility: hidden;
 }
 
 .back {
-  background: #fff;
-  top: 0;
-  left: 0;
-  position: absolute;
-  opacity: 0;
-  transform: rotateY(90deg);
-  transition: all 0.5s;
+  transform:rotateY(180deg);
 }
 
 
@@ -359,7 +365,7 @@ h3 {
   text-align: center;
   display: block;
   margin: 0 auto;
-  height: 100%;
+  /*height: 100%;*/
 }
 
 .card-text {
